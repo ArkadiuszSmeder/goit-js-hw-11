@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const apiKey = "42573503-814be0cbf75c4ae20afa280cd";
 
-// Funkcja do wysyłania zapytania do API Pixabay
+// Funkcja do wysyłania zapytania do API Pixabay i tworzenia galerii
 async function fetchImagesAndGallery(searchQuery, apiKey) {
   const gallery = document.querySelector('.gallery');
   
@@ -47,3 +47,5 @@ searchForm.addEventListener('submit', function(event) {
   const searchQuery = this.elements.searchQuery.value;
   fetchImagesAndGallery(searchQuery, apiKey);
 });
+
+//comment
