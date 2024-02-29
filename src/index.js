@@ -2,8 +2,6 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 
 const apiKey = "42573503-814be0cbf75c4ae20afa280cd";
-const input = document.querySelector('#input');
-const searchQuery = input.split(' ').join('+');
 
 // Funkcja do wysyłania zapytania do API Pixabay
 async function fetchImagesAndGallery(searchQuery, apiKey) {
@@ -41,3 +39,11 @@ async function fetchImagesAndGallery(searchQuery, apiKey) {
     return [];
   }
 };
+
+const searchForm = document.querySelector('.search-form');
+searchForm.addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  const searchQuery = this.elements.searchQuery.value;
+  fetchImagesAndGallery(searchQuery, apiKey);
+});
