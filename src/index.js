@@ -40,6 +40,8 @@ async function fetchImagesAndGallery(searchQuery, apiKey) {
   }
 };
 
+
+//wywołanie funkcji
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', function(event) {
   event.preventDefault();
@@ -47,5 +49,3 @@ searchForm.addEventListener('submit', function(event) {
   const searchQuery = this.elements.searchQuery.value;
   fetchImagesAndGallery(searchQuery, apiKey);
 });
-
-//comment
