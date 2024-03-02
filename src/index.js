@@ -1,5 +1,7 @@
 import Notiflix from 'notiflix';
 import axios from 'axios';
+import SimpleLightbox from "simplelightbox";
+import "simplelightbox/dist/simple-lightbox.min.css";
 
 const apiKey = "42573503-814be0cbf75c4ae20afa280cd";
 let currentPage = 1; 
@@ -37,6 +39,16 @@ async function fetchImagesAndGallery(searchQuery, apiKey, page) {
       `).join('');
 
       gallery.insertAdjacentHTML('beforeend', imagesHTML);
+
+      const lightbox = new SimpleLightbox('.gallery a', {
+        captions: true,
+        captionSelector: 'img',
+        captionType: 'attr',
+        captionData: 'alt',
+        captionPosition: 'bottom',
+        captionDelay: 250,
+      });
+      lightbox.refresh();
 
       // Wyświetlenie przycisku "Load more" tylko wtedy, gdy jest dostępne więcej wyników
       if (data.totalHits > currentPage * 40) {
