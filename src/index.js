@@ -52,15 +52,18 @@ async function fetchImagesAndGallery(searchQuery, apiKey, page) {
   }
 };
 
-
 // Wywołanie funkcji przy przesłaniu formularza wyszukiwania
 const searchForm = document.querySelector('.search-form');
-searchForm.addEventListener('submit', function(event) {
+searchForm.addEventListener('submit', async function(event) {
   event.preventDefault();
-  gallery.innerHTML = '';
   const searchQuery = this.elements.searchQuery.value;
   currentPage = 1; // Resetowanie strony do 1 po wysłaniu nowego zapytania
-  fetchImagesAndGallery(searchQuery, apiKey);
+
+  // Czyszczenie galerii przed wysłaniem nowego zapytania
+  const gallery = document.querySelector('.gallery');
+  gallery.innerHTML = '';
+
+  await fetchImagesAndGallery(searchQuery, apiKey);
 });
 
 // Wywołanie funkcji przy kliknięciu przycisku "Load more"
