@@ -13,8 +13,7 @@ async function fetchImagesAndGallery(searchQuery, apiKey, page) {
   if (page === 1) {
     gallery.innerHTML = ''; // Czyszczenie galerii tylko przy pierwszej stronie wyników
   }
-
-  const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true`;
+  const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`;
   
   try {
     const response = await axios.get(url);
@@ -36,7 +35,7 @@ async function fetchImagesAndGallery(searchQuery, apiKey, page) {
         </div>
       `).join('');
 
-      gallery.innerHTML = imagesHTML;
+      gallery.innerHTML += imagesHTML;
 
       // Wyświetlenie przycisku "Load more" tylko wtedy, gdy jest dostępne więcej wyników
       if (data.totalHits > currentPage * 40) {
