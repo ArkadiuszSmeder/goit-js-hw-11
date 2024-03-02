@@ -11,10 +11,6 @@ loadMoreButton.style.display = 'none';
 // Funkcja do wysyłania zapytania do API Pixabay i tworzenia galerii
 async function fetchImagesAndGallery(searchQuery, apiKey, page) {
   const gallery = document.querySelector('.gallery');
-  
-  if (page === 1) {
-    gallery.innerHTML = ''; // Czyszczenie galerii tylko przy pierwszej stronie wyników
-  }
 
   const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`;
   
