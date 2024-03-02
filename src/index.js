@@ -10,9 +10,8 @@ loadMoreButton.style.display = 'none';
 async function fetchImagesAndGallery(searchQuery, apiKey, page) {
   const gallery = document.querySelector('.gallery');
   
-  if (page === 1) {
-    gallery.innerHTML = ''; // Czyszczenie galerii tylko przy pierwszej stronie wyników
-  }
+  gallery.innerHTML = '';
+
   const url = `https://pixabay.com/api/?key=${apiKey}&q=${searchQuery}&image_type=photo&orientation=horizontal&safesearch=true&page=${page}`;
   
   try {
