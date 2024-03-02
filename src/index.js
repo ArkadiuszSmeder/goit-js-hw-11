@@ -2,14 +2,14 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 
 const apiKey = "42573503-814be0cbf75c4ae20afa280cd";
-const searchQuery = document.querySelector('.search-form').elements.searchQuery.value;
 let currentPage = 1; // Zmienna do przechowywania bieżącej strony wyników
+const loadMoreButton = document.querySelector('.load-more');
 
 // Funkcja do wysyłania zapytania do API Pixabay i tworzenia galerii
 async function fetchImagesAndGallery(searchQuery, apiKey) {
   const gallery = document.querySelector('.gallery');
   
-  if (page === 1) {
+  if (currentPage === 1) {
     gallery.innerHTML = ''; // Czyszczenie galerii tylko przy pierwszej stronie wyników
   }
 
@@ -38,7 +38,7 @@ async function fetchImagesAndGallery(searchQuery, apiKey) {
       gallery.innerHTML = imagesHTML;
 
       // Wyświetlenie przycisku "Load more" tylko wtedy, gdy jest dostępne więcej wyników
-      if (data.totalHits > page * 40) {
+      if (data.totalHits > currentPage * 40) {
         loadMoreButton.style.display = 'block';
       } else {
         loadMoreButton.style.display = 'none';
@@ -57,13 +57,15 @@ async function fetchImagesAndGallery(searchQuery, apiKey) {
 const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', function(event) {
   event.preventDefault();
+
+  const searchQuery = this.elements.searchQuery.value;
   currentPage = 1; // Resetowanie strony do 1 po wysłaniu nowego zapytania
   fetchImagesAndGallery(searchQuery, apiKey);
 });
 
 // Wywołanie funkcji przy kliknięciu przycisku "Load more"
-const loadMoreButton = document.querySelector('.load-more');
 loadMoreButton.addEventListener('click', function() {
+  const searchQuery = document.querySelector('.search-form').elements.searchQuery.value;
   currentPage++;
   fetchImagesAndGallery(searchQuery, apiKey, currentPage);
 });
