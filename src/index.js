@@ -65,7 +65,7 @@ const searchForm = document.querySelector('.search-form');
 searchForm.addEventListener('submit', async function(event) {
   event.preventDefault();
   const searchQuery = this.elements.searchQuery.value;
-  currentPage = 1; // Resetowanie strony do 1 po wysłaniu nowego zapytania
+  currentPage = 1; // Resetowanie strony do 1 po wysłaniu nowego zapytania.
 
   // Czyszczenie galerii przed wysłaniem nowego zapytania
   const gallery = document.querySelector('.gallery');
