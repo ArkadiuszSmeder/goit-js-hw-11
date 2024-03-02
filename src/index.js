@@ -7,10 +7,10 @@ const loadMoreButton = document.querySelector('.load-more');
 loadMoreButton.style.display = 'none';
 
 // Funkcja do wysyłania zapytania do API Pixabay i tworzenia galerii
-async function fetchImagesAndGallery(searchQuery, apiKey) {
+async function fetchImagesAndGallery(searchQuery, apiKey, page) {
   const gallery = document.querySelector('.gallery');
   
-  if (currentPage === 1) {
+  if (page === 1) {
     gallery.innerHTML = ''; // Czyszczenie galerii tylko przy pierwszej stronie wyników
   }
 
