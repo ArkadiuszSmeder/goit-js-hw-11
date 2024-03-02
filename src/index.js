@@ -2,8 +2,9 @@ import Notiflix from 'notiflix';
 import axios from 'axios';
 
 const apiKey = "42573503-814be0cbf75c4ae20afa280cd";
-let currentPage = 1; // Zmienna do przechowywania bieżącej strony wyników
+let currentPage = 1; 
 const loadMoreButton = document.querySelector('.load-more');
+loadMoreButton.style.display = 'none';
 
 // Funkcja do wysyłania zapytania do API Pixabay i tworzenia galerii
 async function fetchImagesAndGallery(searchQuery, apiKey) {
