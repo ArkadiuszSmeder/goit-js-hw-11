@@ -47,7 +47,6 @@ async function fetchImagesAndGallery(searchQuery, apiKey) {
     }
   } catch (error) {
     console.error('Error fetching images:', error);
-    Notiflix.Notify.failure("An error occurred while fetching images. Please try again later.");
     return [];
   }
 };
