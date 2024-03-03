@@ -20,11 +20,14 @@ async function fetchImagesAndGallery(searchQuery, apiKey, page) {
 
     if (data.hits.length <= 0) {
       Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.");
+      loadMoreButton.style.display = 'none';
       return [];
     } else {
       const imagesHTML = data.hits.map(image => `
         <div class="photo-card">
-          <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy" />
+        <a href="${image.webformatURL}" data-lightbox="gallery">
+          <img src="${image.webformatURL}" alt="${image.tags}" loading="lazy"/>
+        </a>
           <div class="info">
             <p class="info-item"><b>Likes:</b> ${image.likes}</p>
             <p class="info-item"><b>Views:</b> ${image.views}</p>
@@ -50,6 +53,7 @@ async function fetchImagesAndGallery(searchQuery, apiKey, page) {
         captionData: 'alt',
         captionPosition: 'bottom',
         captionDelay: 250,
+        zoom: true,
       });
       lightbox.refresh();
 
@@ -62,7 +66,7 @@ async function fetchImagesAndGallery(searchQuery, apiKey, page) {
       }
 
       // Wyświetlenie powiadomienia po pierwszym żądaniu
-      if (page === 1) {
+      if (currentPage === 1) {
         Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
       }
     }
