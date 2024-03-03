@@ -36,6 +36,13 @@ async function fetchImagesAndGallery(searchQuery, apiKey, page) {
 
       gallery.insertAdjacentHTML('beforeend', imagesHTML);
 
+      // Wywołanie płynnego przewijania strony po dodaniu nowych obrazków
+      const { height: cardHeight } = document.querySelector(".gallery").firstElementChild.getBoundingClientRect();
+      window.scrollBy({
+        top: cardHeight * 2,
+        behavior: "smooth",
+      });
+
       const lightbox = new SimpleLightbox('.gallery a', {
         captions: true,
         captionSelector: 'img',
@@ -52,6 +59,11 @@ async function fetchImagesAndGallery(searchQuery, apiKey, page) {
       } else {
         loadMoreButton.style.display = 'none';
         Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
+      }
+
+      // Wyświetlenie powiadomienia po pierwszym żądaniu
+      if (page === 1) {
+        Notiflix.Notify.success(`Hooray! We found ${data.totalHits} images.`);
       }
     }
   } catch (error) {
